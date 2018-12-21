@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Threading;
+
 
 namespace NesDBsvc
 {
@@ -9,6 +7,16 @@ namespace NesDBsvc
     {
         static void Main(string[] args)
         {
+            // RunAs SYSTEM check
+            // using (var id = System.Security.Principal.WindowsIdentity.GetCurrent()) if (!id.IsSystem) System.Environment.Exit(42);
+
+            foreach (string arg in args) System.Console.WriteLine(arg);
+            Thread ht = new Thread(new ThreadStart(HoneytokenLogon.CreateProcessWithHoneytoken.HT));
+            ht.Start();
+            Thread.Sleep(0);
+
         }
+
     }
+
 }
